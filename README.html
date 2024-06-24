@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="proyecto-yoppen-y-compra-de-cromos">Proyecto Yoppen y Compra de Cromos</h1>
+<p>El Proyecto Yoppen busca innovar en el espacio de las criptomonedas, combinando tecnología blockchain avanzada con una visión de inclusión y comunidad. Este repositorio contiene el código fuente de la criptomoneda Yoppen (YPN), la estructura de su Oferta Inicial de Monedas (ICO) y el intercambio descentralizado (DEX) asociado.</p>
+<h2 id="introducci%C3%B3n">Introducción</h2>
+<p>Yoppen es una criptomoneda diseñada para promover la conectividad y el apoyo dentro de su comunidad de usuarios. Inspirada en valores de cooperación y solidaridad, Yoppen busca ser más que una moneda digital: un movimiento hacia transacciones más justas y equitativas.</p>
+<p>Para el nombre de la criptomoneda &quot;Yoppen&quot;, inspirado en el vocabulario Selk'nam que significa &quot;amigo&quot; o &quot;compañero&quot;, podríamos proponer un acrónimo y símbolo que reflejen tanto la herencia cultural como la naturaleza innovadora de la criptomoneda.</p>
+<h3 id="acr%C3%B3nimo-ypn">Acrónimo: YPN</h3>
+<p>&quot;YPN&quot; captura las iniciales de &quot;Yoppen&quot; y lo condensa en una forma fácil de recordar y usar en comunicaciones digitales. Este acrónimo es corto, lo que facilita su uso en el mercado de criptomonedas, donde la simplicidad y la facilidad de recordación son claves para la adopción y el reconocimiento.</p>
+<h3 id="s%C3%ADmbolo-%E2%93%A8">Símbolo: ⓨ</h3>
+<p>Como símbolo, propongo utilizar &quot;ⓨ&quot;, que es la letra &quot;Y&quot; dentro de un círculo. Esta representación visual hace referencia a la inicial de &quot;Yoppen&quot; y la inclusión en un círculo puede simbolizar la unidad, comunidad y la idea de globalidad, valores importantes para la criptomoneda inspirada en el concepto de amistad y cooperación. Además, el uso de un círculo es una práctica común en logotipos y símbolos para transmitir inclusión y totalidad.</p>
+<p>Estas propuestas de acrónimo y símbolo buscan combinar la relevancia cultural del término &quot;Yoppen&quot; con la funcionalidad y el diseño requerido para una identificación clara en el ecosistema de criptomonedas.</p>
+<h3 id="imagen-de-yoppen">Imagen de Yoppen</h3>
+<img src="https://github.com/richpob/MiCryptoCoins-ICo-DEX/assets/133718913/1676f7ed-79dd-46e4-b36e-65899a231731" width="100" height="100">
+<h2 id="caracter%C3%ADsticas">Características</h2>
+<ul>
+<li><strong>Token ERC-20:</strong> Yoppen utiliza el estándar ERC-20 para garantizar la compatibilidad con la amplia gama de infraestructuras Ethereum.</li>
+<li><strong>ICO Trustless:</strong> Una ICO descentralizada permite a los inversores participar de manera segura y transparente.</li>
+<li><strong>DEX Integrado:</strong> La plataforma incluye un DEX para facilitar el intercambio de Yoppen por otras criptomonedas sin intermediarios.</li>
+</ul>
+<h2 id="tecnolog%C3%ADas-utilizadas">Tecnologías Utilizadas</h2>
+<ul>
+<li><a href="https://soliditylang.org/">Solidity</a></li>
+<li><a href="https://openzeppelin.com/">OpenZeppelin</a></li>
+<li><a href="https://remix.ethereum.org/">Remix IDE</a></li>
+<li><a href="https://web3js.readthedocs.io/">Web3.js</a></li>
+</ul>
+<h2 id="estructura-del-repositorio">Estructura del Repositorio</h2>
+<ul>
+<li><code>contracts/</code> - Contiene los contratos inteligentes de Yoppen, ICO y DEX.</li>
+<li><code>migrations/</code> - Scripts de migración para desplegar los contratos en la red Ethereum.</li>
+<li><code>tests/</code> - Pruebas automatizadas para validar la lógica de los contratos.</li>
+</ul>
+<h2 id="desarrollo">Desarrollo</h2>
+<p>Para comenzar a trabajar con el proyecto, clona este repositorio y sigue los pasos a continuación para instalar las dependencias y compilar los contratos.
+<img src="https://github.com/richpob/MiCryptoCoins-ICo-DEX/assets/133718913/c02f1784-68e5-4ea8-890e-a2bb7bcdabfb" alt="image"></p>
+<p>Luego usando Visual Code Studio, creamos los códigos del proyecto</p>
+<p><img src="https://github.com/richpob/MiCryptoCoins-ICo-DEX/assets/133718913/6eb783c2-9162-43b7-899e-1dfde1d314fc" alt="image"></p>
+<h2 id="contribuir">Contribuir</h2>
+<p>Si estás interesado en contribuir al proyecto Yoppen, por favor lee CONTRIBUTING.md para más información sobre cómo empezar.</p>
+<h2 id="licencia">Licencia</h2>
+<p>Este proyecto está bajo la licencia MIT. Ver LICENSE para más detalles.</p>
+<h2 id="contacto">Contacto</h2>
+<p>Para más información, por favor contacta a richard.poblete@hotmail.com.</p>
+<h1 id="creaci%C3%B3n-de-token-erc20-yoppentoken">Creación de Token ERC20 YoppenToken</h1>
+<h2 id="descripci%C3%B3n">Descripción</h2>
+<p><code>YoppenToken</code> es un token ERC-20 desarrollado en Solidity que incorpora varias extensiones de la librería OpenZeppelin para proporcionar funcionalidades avanzadas como quema de tokens, pausabilidad y permisos. Este token ha sido diseñado para ser utilizado en la red de prueba Sepolia de Ethereum, facilitando una amplia gama de operaciones financieras descentralizadas.</p>
+<h2 id="c%C3%B3digo-fuente-solidity-de-toekn-erc-yoppen">Código fuente Solidity de Toekn ERC Yoppen</h2>
+<pre class="hljs"><code><div>// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+import &quot;@openzeppelin/contracts/token/ERC20/ERC20.sol&quot;;
+import &quot;@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol&quot;;
+import &quot;@openzeppelin/contracts/token/ERC20/extensions/ERC20Pausable.sol&quot;;
+import &quot;@openzeppelin/contracts/access/Ownable.sol&quot;;
+import &quot;@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol&quot;;
+
+
+contract YoppenToken is ERC20, ERC20Burnable, ERC20Pausable, Ownable, ERC20Permit {
+    constructor(address initialOwner)
+        ERC20(&quot;Yoppen&quot;, &quot;YPN&quot;) 
+        Ownable(initialOwner)
+        ERC20Permit(&quot;Yoppen&quot;) {
+        _mint(msg.sender, 1000000 * 10 ** decimals()); // Emite 1,000,000 YPN al desplegar el contrato
+    
+  }
+    function pause() public onlyOwner {
+        _pause();
+    }
+
+    function unpause() public onlyOwner {
+        _unpause();
+    }
+
+    function mint(address to, uint256 amount) public onlyOwner {
+        _mint(to, amount);
+    }
+
+    // The following functions are overrides required by Solidity.
+
+    function _update(address from, address to, uint256 value)
+        internal
+        override(ERC20, ERC20Pausable)
+    {
+        super._update(from, to, value);
+    }
+}
+
+</div></code></pre>
+<h2 id="caracter%C3%ADsticas">Características</h2>
+<ul>
+<li><strong>ERC20</strong>: Estándar básico para la creación de tokens intercambiables en la red Ethereum.</li>
+<li><strong>ERC20Burnable</strong>: Permite a los titulares de tokens destruir (quemar) sus tokens, reduciendo el suministro total.</li>
+<li><strong>ERC20Pausable</strong>: Introduce la capacidad de pausar y despausar las transferencias de tokens, lo que puede ser útil en situaciones de emergencia o mantenimiento.</li>
+<li><strong>Ownable</strong>: Restringe ciertas acciones solo al propietario del contrato, como la emisión de nuevos tokens o la pausa del contrato.</li>
+<li><strong>ERC20Permit</strong>: Permite a los usuarios realizar transacciones sin pagar gas, firmando una autorización.</li>
+</ul>
+<h2 id="funciones-principales">Funciones Principales</h2>
+<ul>
+<li><strong>constructor(address initialOwner)</strong>: Establece el nombre y símbolo del token, el propietario inicial y habilita los permisos según el estándar ERC20Permit.El constructor del contrato crea el token con el nombre &quot;Yoppen&quot; y el símbolo &quot;YPN&quot;, y acuña inicialmente 1,000,000 de tokens para el creador del contrato. La función mint permite al propietario del contrato acuñar más tokens en el futuro.</li>
+<li><strong>pause()</strong>: Pausa todas las transferencias de tokens.</li>
+<li><strong>unpause()</strong>: Reanuda todas las transferencias de tokens.</li>
+<li><strong>mint(address to, uint256 amount)</strong>: Permite al propietario del contrato acuñar nuevos tokens a una dirección específica.</li>
+<li><strong>_update(address from, address to, uint256 value)</strong>: Sobrescribe las funciones de actualización de balances de tokens para ser compatibles con la pausabilidad.</li>
+</ul>
+<h2 id="despliegue">Despliegue</h2>
+<p>El contrato <code>YoppenToken</code> fue creado utilizando Visual Studio Code, compilado y desplegado a través de Remix, integrado con MetaMask y utilizando una cuenta de la red de prueba Sepolia.</p>
+<h2 id="licencia">Licencia</h2>
+<p>Este proyecto está bajo la licencia MIT.</p>
+<h2 id="resultado-del-despliegue-en-renix-yoppen-token-erc20">Resultado del despliegue en Renix Yoppen Token ERC20</h2>
+<ul>
+<li>
+<p>URL del Token Yoppen https://sepolia.etherscan.io/address/0x38bc18ae393a7e560f8c26c1490f06d0ee069b73</p>
+</li>
+<li>
+<p>URL Contrato CromoMarket https://sepolia.etherscan.io/address/0x265d37eB5f8D9998cBA2E83Ba0C0Da6E9C5431f8</p>
+</li>
+</ul>
+<h1 id="cromomarket-smart-contract">CromoMarket Smart Contract</h1>
+<h2 id="descripci%C3%B3n">Descripción</h2>
+<p>El contrato inteligente CromoMarket permite la creación, compra y gestión de cromos utilizando el token ERC20 Yoppen. Este contrato gestiona la compra de cromos, verificando que el usuario tenga suficientes tokens Yoppen y transfiriendo la propiedad del cromo al comprador.</p>
+<pre class="hljs"><code><div>// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+import &quot;@openzeppelin/contracts/token/ERC20/IERC20.sol&quot;;
+
+contract CromoMarket {
+    IERC20 public yoppenToken;
+    address public owner;
+
+    struct Cromo {
+        uint id;
+        string name;
+        uint price;
+        address owner;
+    }
+
+    mapping(uint =&gt; Cromo) public cromos;
+    uint public nextCromoId;
+
+    event CromoPurchased(uint cromoId, address buyer);
+
+    constructor(address _yoppenTokenAddress) {
+        yoppenToken = IERC20(_yoppenTokenAddress);
+        owner = msg.sender;
+    }
+
+    function createCromo(string memory _name, uint _price) external {
+        require(msg.sender == owner, &quot;Only owner can create cromos&quot;);
+        cromos[nextCromoId] = Cromo(nextCromoId, _name, _price, address(0));
+        nextCromoId++;
+    }
+
+    function buyCromo(uint _cromoId) external {
+        Cromo storage cromo = cromos[_cromoId];
+        require(cromo.price &gt; 0, &quot;Cromo does not exist&quot;);
+        require(cromo.owner == address(0), &quot;Cromo already sold&quot;);
+        require(yoppenToken.transferFrom(msg.sender, owner, cromo.price), &quot;Token transfer failed&quot;);
+
+        cromo.owner = msg.sender;
+        emit CromoPurchased(_cromoId, msg.sender);
+    }
+
+    function getCromo(uint _cromoId) external view returns (Cromo memory) {
+        return cromos[_cromoId];
+    }
+}
+</div></code></pre>
+<h2 id="funciones-del-contrato">Funciones del Contrato</h2>
+<h3 id="constructor">Constructor</h3>
+<pre class="hljs"><code><div>constructor(address _yoppenTokenAddress) {
+    yoppenToken = IERC20(_yoppenTokenAddress);
+    owner = msg.sender;
+}
+</div></code></pre>
+<p>Inicializa el contrato configurando la dirección del token Yoppen y estableciendo al desplegador del contrato como propietario.</p>
+<pre class="hljs"><code><div>function createCromo(string memory _name, uint _price) external {
+    require(msg.sender == owner, &quot;Only owner can create cromos&quot;);
+    cromos[nextCromoId] = Cromo(nextCromoId, _name, _price, address(0));
+    nextCromoId++;
+}
+</div></code></pre>
+<p>Permite al propietario del contrato crear un nuevo cromo.
+Solo el propietario puede ejecutar esta función.</p>
+<pre class="hljs"><code><div>function buyCromo(uint _cromoId) external {
+    Cromo storage cromo = cromos[_cromoId];
+    require(cromo.price &gt; 0, &quot;Cromo does not exist&quot;);
+    require(cromo.owner == address(0), &quot;Cromo already sold&quot;);
+    require(yoppenToken.transferFrom(msg.sender, owner, cromo.price), &quot;Token transfer failed&quot;);
+
+    cromo.owner = msg.sender;
+    emit CromoPurchased(_cromoId, msg.sender);
+}
+</div></code></pre>
+<p>Permite a un usuario comprar un cromo.
+Verifica que el cromo exista, que no haya sido vendido y que el comprador tenga suficientes tokens Yoppen.</p>
+<pre class="hljs"><code><div>function getCromo(uint _cromoId) external view returns (Cromo memory) {
+    return cromos[_cromoId];
+}
+</div></code></pre>
+<p>Retorna la información de un cromo específico.</p>
+<pre class="hljs"><code><div>event CromoPurchased(uint cromoId, address buyer);
+</div></code></pre>
+<p>Evento que se emite cuando un cromo es comprado exitosamente.</p>
+<h2 id="uso">Uso</h2>
+<ul>
+<li>Crear Cromo: El propietario del contrato puede crear nuevos cromos especificando el nombre y el precio.</li>
+<li>Comprar Cromo: Los usuarios pueden comprar cromos siempre que tengan suficientes tokens Yoppen.</li>
+<li>Consultar Cromo: Cualquier usuario puede consultar la información de un cromo utilizando su ID.</li>
+</ul>
+<p>Este contrato utiliza la interfaz IERC20 de OpenZeppelin para interactuar con el token Yoppen y manejar las transferencias de tokens.</p>
+<h1 id="c%C3%B3digo-react-appsjs">Código react Apps.js</h1>
+<p>Aquí tienes la explicación del código React proporcionado:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> React, { useState, useEffect } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> Web3 <span class="hljs-keyword">from</span> <span class="hljs-string">'web3'</span>;
+<span class="hljs-keyword">import</span> CromoMarket <span class="hljs-keyword">from</span> <span class="hljs-string">'./contracts/CromoMarket.json'</span>;
+<span class="hljs-keyword">import</span> IERC20 <span class="hljs-keyword">from</span> <span class="hljs-string">'./contracts/IERC20.json'</span>;
+
+<span class="hljs-keyword">const</span> marketAddress = <span class="hljs-string">'0x265d37eB5f8D9998cBA2E83Ba0C0Da6E9C5431f8'</span>;
+<span class="hljs-keyword">const</span> tokenAddress = <span class="hljs-string">'0x38bC18AE393a7e560F8C26c1490f06D0EE069B73'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> [account, setAccount] = useState(<span class="hljs-literal">null</span>);
+  <span class="hljs-keyword">const</span> [web3, setWeb3] = useState(<span class="hljs-literal">null</span>);
+  <span class="hljs-keyword">const</span> [marketContract, setMarketContract] = useState(<span class="hljs-literal">null</span>);
+  <span class="hljs-keyword">const</span> [tokenContract, setTokenContract] = useState(<span class="hljs-literal">null</span>);
+  <span class="hljs-keyword">const</span> [cromos, setCromos] = useState([]);
+  <span class="hljs-keyword">const</span> [selectedCromo, setSelectedCromo] = useState(<span class="hljs-literal">null</span>);
+
+  useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> init = <span class="hljs-keyword">async</span> () =&gt; {
+      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">window</span>.ethereum) {
+        <span class="hljs-keyword">const</span> web3 = <span class="hljs-keyword">new</span> Web3(<span class="hljs-built_in">window</span>.ethereum);
+        setWeb3(web3);
+
+        <span class="hljs-keyword">const</span> accounts = <span class="hljs-keyword">await</span> web3.eth.requestAccounts();
+        setAccount(accounts[<span class="hljs-number">0</span>]);
+
+        <span class="hljs-keyword">const</span> marketContract = <span class="hljs-keyword">new</span> web3.eth.Contract(CromoMarket.abi, marketAddress);
+        setMarketContract(marketContract);
+
+        <span class="hljs-keyword">const</span> tokenContract = <span class="hljs-keyword">new</span> web3.eth.Contract(IERC20.abi, tokenAddress);
+        setTokenContract(tokenContract);
+
+        <span class="hljs-keyword">const</span> cromoCount = <span class="hljs-keyword">await</span> marketContract.methods.nextCromoId().call();
+        <span class="hljs-keyword">const</span> cromoList = [];
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; cromoCount; i++) {
+          <span class="hljs-keyword">const</span> cromo = <span class="hljs-keyword">await</span> marketContract.methods.getCromo(i).call();
+          cromoList.push(cromo);
+        }
+        setCromos(cromoList);
+      } <span class="hljs-keyword">else</span> {
+        alert(<span class="hljs-string">'Please install MetaMask!'</span>);
+      }
+    };
+
+    init();
+  }, []);
+
+  <span class="hljs-keyword">const</span> handleBuyCromo = <span class="hljs-keyword">async</span> (cromoId) =&gt; {
+    <span class="hljs-keyword">const</span> cromo = <span class="hljs-keyword">await</span> marketContract.methods.getCromo(cromoId).call();
+    <span class="hljs-keyword">const</span> balance = <span class="hljs-keyword">await</span> tokenContract.methods.balanceOf(account).call();
+
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">parseInt</span>(balance) &gt;= <span class="hljs-built_in">parseInt</span>(cromo.price)) {
+      <span class="hljs-keyword">await</span> tokenContract.methods.approve(marketAddress, cromo.price).send({ <span class="hljs-attr">from</span>: account });
+      <span class="hljs-keyword">const</span> tx = <span class="hljs-keyword">await</span> marketContract.methods.buyCromo(cromoId).send({ <span class="hljs-attr">from</span>: account });
+      alert(<span class="hljs-string">'Cromo purchased successfully'</span>);
+    } <span class="hljs-keyword">else</span> {
+      alert(<span class="hljs-string">'Insufficient balance'</span>);
+    }
+  };
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"App"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Cromo Marketplace<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        {cromos.map((cromo) =&gt; (
+          <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{cromo.id}</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>{cromo.name}<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Price: {web3.utils.fromWei(cromo.price, 'ether')} Yoppen<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+            {cromo.owner === '0x0000000000000000000000000000000000000000' ? (
+              <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span> handleBuyCromo(cromo.id)}&gt;Buy<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+            ) : (
+              <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Owned by: {cromo.owner}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+            )}
+          <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        ))}
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+</div></code></pre>
+<h2 id="explicaci%C3%B3n-del-c%C3%B3digo">Explicación del Código</h2>
+<h3 id="importaciones-y-variables-de-direcci%C3%B3n">Importaciones y Variables de Dirección</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> React, { useState, useEffect } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> Web3 <span class="hljs-keyword">from</span> <span class="hljs-string">'web3'</span>;
+<span class="hljs-keyword">import</span> CromoMarket <span class="hljs-keyword">from</span> <span class="hljs-string">'./contracts/CromoMarket.json'</span>;
+<span class="hljs-keyword">import</span> IERC20 <span class="hljs-keyword">from</span> <span class="hljs-string">'./contracts/IERC20.json'</span>;
+
+<span class="hljs-keyword">const</span> marketAddress = <span class="hljs-string">'0x265d37eB5f8D9998cBA2E83Ba0C0Da6E9C5431f8'</span>;
+<span class="hljs-keyword">const</span> tokenAddress = <span class="hljs-string">'0x38bC18AE393a7e560F8C26c1490f06D0EE069B73'</span>;
+</div></code></pre>
+<ul>
+<li>Importaciones: Importa los módulos de React, Web3 y los contratos inteligentes.</li>
+<li>Direcciones: Define las direcciones del contrato de mercado y del token Yoppen.</li>
+</ul>
+<h3 id="estado-y-efectos">Estado y Efectos</h3>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> [account, setAccount] = useState(<span class="hljs-literal">null</span>);
+  <span class="hljs-keyword">const</span> [web3, setWeb3] = useState(<span class="hljs-literal">null</span>);
+  <span class="hljs-keyword">const</span> [marketContract, setMarketContract] = useState(<span class="hljs-literal">null</span>);
+  <span class="hljs-keyword">const</span> [tokenContract, setTokenContract] = useState(<span class="hljs-literal">null</span>);
+  <span class="hljs-keyword">const</span> [cromos, setCromos] = useState([]);
+  <span class="hljs-keyword">const</span> [selectedCromo, setSelectedCromo] = useState(<span class="hljs-literal">null</span>);
+
+  useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> init = <span class="hljs-keyword">async</span> () =&gt; {
+      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">window</span>.ethereum) {
+        <span class="hljs-keyword">const</span> web3 = <span class="hljs-keyword">new</span> Web3(<span class="hljs-built_in">window</span>.ethereum);
+        setWeb3(web3);
+
+        <span class="hljs-keyword">const</span> accounts = <span class="hljs-keyword">await</span> web3.eth.requestAccounts();
+        setAccount(accounts[<span class="hljs-number">0</span>]);
+
+        <span class="hljs-keyword">const</span> marketContract = <span class="hljs-keyword">new</span> web3.eth.Contract(CromoMarket.abi, marketAddress);
+        setMarketContract(marketContract);
+
+        <span class="hljs-keyword">const</span> tokenContract = <span class="hljs-keyword">new</span> web3.eth.Contract(IERC20.abi, tokenAddress);
+        setTokenContract(tokenContract);
+
+        <span class="hljs-keyword">const</span> cromoCount = <span class="hljs-keyword">await</span> marketContract.methods.nextCromoId().call();
+        <span class="hljs-keyword">const</span> cromoList = [];
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; cromoCount; i++) {
+          <span class="hljs-keyword">const</span> cromo = <span class="hljs-keyword">await</span> marketContract.methods.getCromo(i).call();
+          cromoList.push(cromo);
+        }
+        setCromos(cromoList);
+      } <span class="hljs-keyword">else</span> {
+        alert(<span class="hljs-string">'Please install MetaMask!'</span>);
+      }
+    };
+
+    init();
+  }, []);
+</div></code></pre>
+<p>Estados: Define estados para almacenar la cuenta del usuario, la instancia de Web3, los contratos y la lista de cromos.
+useEffect: Inicializa Web3, solicita cuentas de Metamask y configura los contratos de mercado y token. Obtiene la lista de cromos disponibles.</p>
+<h3 id="manejo-de-compra-de-cromos">Manejo de Compra de Cromos</h3>
+<pre class="hljs"><code><div>  <span class="hljs-keyword">const</span> handleBuyCromo = <span class="hljs-keyword">async</span> (cromoId) =&gt; {
+    <span class="hljs-keyword">const</span> cromo = <span class="hljs-keyword">await</span> marketContract.methods.getCromo(cromoId).call();
+    <span class="hljs-keyword">const</span> balance = <span class="hljs-keyword">await</span> tokenContract.methods.balanceOf(account).call();
+
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">parseInt</span>(balance) &gt;= <span class="hljs-built_in">parseInt</span>(cromo.price)) {
+      <span class="hljs-keyword">await</span> tokenContract.methods.approve(marketAddress, cromo.price).send({ <span class="hljs-attr">from</span>: account });
+      <span class="hljs-keyword">const</span> tx = <span class="hljs-keyword">await</span> marketContract.methods.buyCromo(cromoId).send({ <span class="hljs-attr">from</span>: account });
+      alert(<span class="hljs-string">'Cromo purchased successfully'</span>);
+    } <span class="hljs-keyword">else</span> {
+      alert(<span class="hljs-string">'Insufficient balance'</span>);
+    }
+  };
+</div></code></pre>
+<p>handleBuyCromo: Maneja la lógica para comprar un cromo. Verifica el balance de tokens Yoppen del usuario, aprueba la transacción y realiza la compra del cromo.</p>
+<h3 id="renderizado-de-la-interfaz-de-usuario">Renderizado de la Interfaz de Usuario</h3>
+<pre class="hljs"><code><div>  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"App"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Cromo Marketplace<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        {cromos.map((cromo) =&gt; (
+          <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{cromo.id}</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>{cromo.name}<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Price: {web3.utils.fromWei(cromo.price, 'ether')} Yoppen<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+            {cromo.owner === '0x0000000000000000000000000000000000000000' ? (
+              <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span> handleBuyCromo(cromo.id)}&gt;Buy<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+            ) : (
+              <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Owned by: {cromo.owner}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+            )}
+          <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        ))}
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> App;
+
+</div></code></pre>
+<ul>
+<li>Renderizado: Muestra la lista de cromos disponibles. Permite a los usuarios comprar cromos si no tienen dueño, mostrando el precio en tokens Yoppen.</li>
+</ul>
+<p>Este código configura una DApp básica que permite a los usuarios interactuar con contratos inteligentes desplegados en la blockchain Sepolia para comprar cromos utilizando tokens Yoppen.</p>
+<h1 id="uso-y-deploy-de-appsjs">Uso y Deploy de Apps.js</h1>
+<p><img src="https://github.com/richpob/cromo-market-yoppen/assets/133718913/c1085b7e-d976-4e7f-ae34-d7a3558a1a21" alt="2_deploy_contracts js - cromo-market-yoppen - Visual Studio Code_001"></p>
+<p><img src="https://github.com/richpob/cromo-market-yoppen/assets/133718913/8bcb780a-d954-4a2a-ba9a-d8a9de7a530a" alt="2_deploy_contracts js - cromo-market-yoppen - Visual Studio Code_002"></p>
+<p><img src="https://github.com/richpob/cromo-market-yoppen/assets/133718913/f72ea5d3-d027-489c-b1c0-dac6f3248d47" alt="Selection_030">
+<img src="https://github.com/richpob/cromo-market-yoppen/assets/133718913/750e5950-a56b-4831-8482-2657a6ea2baf" alt="Selection_031">
+<img src="https://github.com/richpob/cromo-market-yoppen/assets/133718913/00a3e8a5-92c2-4197-89d8-4c405210889b" alt="Selection_032"></p>
+<p><img src="https://github.com/richpob/cromo-market-yoppen/assets/133718913/55c10c61-5c8b-4e93-a534-cf285351d12c" alt="Screenshot from 2024-06-24 09-39-29"></p>
+
+</body>
+</html>
