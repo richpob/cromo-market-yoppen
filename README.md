@@ -133,11 +133,105 @@ Este proyecto está bajo la licencia MIT.
 
 - URL Contrato CromoMarket https://sepolia.etherscan.io/address/0x265d37eB5f8D9998cBA2E83Ba0C0Da6E9C5431f8
 
+# CromoMarket Smart Contract
+## Descripción
+El contrato inteligente CromoMarket permite la creación, compra y gestión de cromos utilizando el token ERC20 Yoppen. Este contrato gestiona la compra de cromos, verificando que el usuario tenga suficientes tokens Yoppen y transfiriendo la propiedad del cromo al comprador.
 
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
 
-### Imagen del contrato Toekn ERC20
-![image](https://github.com/richpob/MiCryptoCoins-ICo-DEX/assets/133718913/5117aa31-6647-47ed-81d6-dc295f911b5c)
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
-### Cartera de Metamak con Token Yoppen
-![image](https://github.com/richpob/MiCryptoCoins-ICo-DEX/assets/133718913/7c403316-33c9-475f-bc82-35b24f09143f)
+contract CromoMarket {
+    IERC20 public yoppenToken;
+    address public owner;
 
+    struct Cromo {
+        uint id;
+        string name;
+        uint price;
+        address owner;
+    }
+
+    mapping(uint => Cromo) public cromos;
+    uint public nextCromoId;
+
+    event CromoPurchased(uint cromoId, address buyer);
+
+    constructor(address _yoppenTokenAddress) {
+        yoppenToken = IERC20(_yoppenTokenAddress);
+        owner = msg.sender;
+    }
+
+    function createCromo(string memory _name, uint _price) external {
+        require(msg.sender == owner, "Only owner can create cromos");
+        cromos[nextCromoId] = Cromo(nextCromoId, _name, _price, address(0));
+        nextCromoId++;
+    }
+
+    function buyCromo(uint _cromoId) external {
+        Cromo storage cromo = cromos[_cromoId];
+        require(cromo.price > 0, "Cromo does not exist");
+        require(cromo.owner == address(0), "Cromo already sold");
+        require(yoppenToken.transferFrom(msg.sender, owner, cromo.price), "Token transfer failed");
+
+        cromo.owner = msg.sender;
+        emit CromoPurchased(_cromoId, msg.sender);
+    }
+
+    function getCromo(uint _cromoId) external view returns (Cromo memory) {
+        return cromos[_cromoId];
+    }
+}
+```
+## Funciones del Contrato
+### Constructor
+```solidity
+constructor(address _yoppenTokenAddress) {
+    yoppenToken = IERC20(_yoppenTokenAddress);
+    owner = msg.sender;
+}
+```
+Inicializa el contrato configurando la dirección del token Yoppen y estableciendo al desplegador del contrato como propietario.
+```solidity
+function createCromo(string memory _name, uint _price) external {
+    require(msg.sender == owner, "Only owner can create cromos");
+    cromos[nextCromoId] = Cromo(nextCromoId, _name, _price, address(0));
+    nextCromoId++;
+}
+```
+Permite al propietario del contrato crear un nuevo cromo.
+Solo el propietario puede ejecutar esta función.
+
+```solidity
+function buyCromo(uint _cromoId) external {
+    Cromo storage cromo = cromos[_cromoId];
+    require(cromo.price > 0, "Cromo does not exist");
+    require(cromo.owner == address(0), "Cromo already sold");
+    require(yoppenToken.transferFrom(msg.sender, owner, cromo.price), "Token transfer failed");
+
+    cromo.owner = msg.sender;
+    emit CromoPurchased(_cromoId, msg.sender);
+}
+```
+
+Permite a un usuario comprar un cromo.
+Verifica que el cromo exista, que no haya sido vendido y que el comprador tenga suficientes tokens Yoppen.
+```solidity
+function getCromo(uint _cromoId) external view returns (Cromo memory) {
+    return cromos[_cromoId];
+}
+```
+Retorna la información de un cromo específico.
+```solidity
+event CromoPurchased(uint cromoId, address buyer);
+```
+Evento que se emite cuando un cromo es comprado exitosamente.
+
+## Uso
+ - Crear Cromo: El propietario del contrato puede crear nuevos cromos especificando el nombre y el precio.
+ - Comprar Cromo: Los usuarios pueden comprar cromos siempre que tengan suficientes tokens Yoppen.
+ - Consultar Cromo: Cualquier usuario puede consultar la información de un cromo utilizando su ID.
+
+Este contrato utiliza la interfaz IERC20 de OpenZeppelin para interactuar con el token Yoppen y manejar las transferencias de tokens.
