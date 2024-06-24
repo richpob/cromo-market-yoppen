@@ -420,4 +420,5 @@ export default App;
 ```
 
  - Renderizado: Muestra la lista de cromos disponibles. Permite a los usuarios comprar cromos si no tienen dueño, mostrando el precio en tokens Yoppen.
+
 Este código configura una DApp básica que permite a los usuarios interactuar con contratos inteligentes desplegados en la blockchain Sepolia para comprar cromos utilizando tokens Yoppen.
