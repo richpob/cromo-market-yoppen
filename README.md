@@ -422,3 +422,17 @@ export default App;
  - Renderizado: Muestra la lista de cromos disponibles. Permite a los usuarios comprar cromos si no tienen dueño, mostrando el precio en tokens Yoppen.
 
 Este código configura una DApp básica que permite a los usuarios interactuar con contratos inteligentes desplegados en la blockchain Sepolia para comprar cromos utilizando tokens Yoppen.
+
+# Uso y Deploy de Apps.js 
+![2_deploy_contracts js - cromo-market-yoppen - Visual Studio Code_001](https://github.com/richpob/cromo-market-yoppen/assets/133718913/c1085b7e-d976-4e7f-ae34-d7a3558a1a21)
+
+![2_deploy_contracts js - cromo-market-yoppen - Visual Studio Code_002](https://github.com/richpob/cromo-market-yoppen/assets/133718913/8bcb780a-d954-4a2a-ba9a-d8a9de7a530a)
+
+![Selection_030](https://github.com/richpob/cromo-market-yoppen/assets/133718913/f72ea5d3-d027-489c-b1c0-dac6f3248d47)
+![Selection_031](https://github.com/richpob/cromo-market-yoppen/assets/133718913/750e5950-a56b-4831-8482-2657a6ea2baf)
+![Selection_032](https://github.com/richpob/cromo-market-yoppen/assets/133718913/00a3e8a5-92c2-4197-89d8-4c405210889b)
+
+![Screenshot from 2024-06-24 09-39-29](https://github.com/richpob/cromo-market-yoppen/assets/133718913/55c10c61-5c8b-4e93-a534-cf285351d12c)
+
+
+
